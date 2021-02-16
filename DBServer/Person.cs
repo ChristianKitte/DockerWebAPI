@@ -11,8 +11,8 @@ namespace DBServer
         [Key]
         public int PersonID { get; set; }
         [Required]
-        public int Vorname { get; set; }
+        public string Vorname { get; set; }
         [Required]
-        public int Nachname { get; set; }
+        public string Nachname { get; set; }
     }
 }

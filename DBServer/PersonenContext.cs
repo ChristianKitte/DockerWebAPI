@@ -13,7 +13,7 @@ namespace DBServer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite("Data-Source=personen.db");
+            optionsBuilder.UseSqlite("Data Source=personen.db");
         }
     }
 }
