@@ -34,10 +34,10 @@ namespace DBServer
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DBServer", Version = "v1" });
             });
-            services.AddDbContext<PersonenContext>(options =>
+            /*services.AddDbContext<PersonenContext>(options =>
             {
                 options.UseSqlite()
-            });
+            });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
