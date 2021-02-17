@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 namespace DBServer.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/api/v1")]
     public class DataBaseController : ControllerBase
     {
         private PersonenContext _context;
@@ -20,22 +20,29 @@ namespace DBServer.Controllers
             _context = context;
         }
 
-        [HttpGet("api/v1/get_persons")]
-        public IActionResult Get()
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            var persons = _context.Persons.Select(x => x).ToArray();
-            return Ok(persons);
+            try
+            {
+                var person = _context.Persons.Select(x => x).ToArray();
+                return Ok(person.ToList());
+            }
+            catch (Exception f)
+            {
+                return Ok(f);
+            }
         }
 
-        [HttpGet("api/v1/get_person_by_id/{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult GetByID(int id)
         {
-            var persons = _context.Persons.FirstOrDefault(x => x.PersonID == id);
-            return Ok(persons);
+           var persons = _context.Persons.FirstOrDefault(x => x.PersonID == id);
+           return Ok(persons);
         }
         
-        [HttpPut("api/v1/add_person/{vorname}/{nachname}")]
-        public IActionResult Put(string vorname, string nachname)
+        [HttpPut("{vorname}/{nachname}")]
+        public IActionResult AddPerson(string vorname, string nachname)
         {
             var person = new Person();
             person.Vorname = vorname;
@@ -47,8 +54,8 @@ namespace DBServer.Controllers
             return Ok(person);
         }
         
-        [HttpPost("api/v1/update_person/{id}/{vorname}/{nachname}")]
-        public IActionResult Post(int id,string vorname, string nachname)
+        [HttpPost("{id}/{vorname}/{nachname}")]
+        public IActionResult UpdatePerson(int id,string vorname, string nachname)
         {
             var person = _context.Persons.FirstOrDefault(x=>x.PersonID==id);
             person.Vorname = vorname;
@@ -59,8 +66,8 @@ namespace DBServer.Controllers
             return Ok(person);
         }
 
-        [HttpDelete("api/v1/delete_person/{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{id}")]
+        public IActionResult DeletePerson(int id)
         {
             var person = _context.Persons.Where(x => x.PersonID == id).FirstOrDefault();
             _context.Persons.Remove(person);

@@ -4,7 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
 	<StartWorkingDirectory>$(MSBuildProjectDirectory)</StartWorkingDirectory>
     <UserSecretsId>41c08262-d575-4edc-b30e-7e5640ecb0bb</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <StartupObject>DBServer.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +21,9 @@
   <ItemGroup>
     <None Update="..\.dockerignore">
       <DependentUpon>dockerfile</DependentUpon>
+    </None>
+    <None Update="personen.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
