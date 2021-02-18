@@ -5,7 +5,8 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
-EXPOSE 5001
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
@@ -21,7 +22,4 @@ RUN dotnet publish "DBServer.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY ["DBServer/personen.db", "/app/publish/"]
-COPY ["DBServer/personen.db", "/app"]
-COPY ["DBServer/personen.db", "/"]
 ENTRYPOINT ["dotnet", "DBServer.dll"]
