@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DBServer
 {
-    public class PersonenContext :DbContext
+    public class DataBaseContext :DbContext
     {
         public DbSet<Person>Persons { get; set; }
 

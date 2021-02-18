@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBServer.Migrations
 {
-    [DbContext(typeof(PersonenContext))]
+    [DbContext(typeof(DataBaseContext))]
     partial class PersonenContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBServer.Migrations
 {
-    [DbContext(typeof(PersonenContext))]
+    [DbContext(typeof(DataBaseContext))]
     [Migration("20210216180706_AnpassungFeldtyp")]
     partial class AnpassungFeldtyp
     {

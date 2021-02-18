@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBServer.Migrations
 {
-    [DbContext(typeof(PersonenContext))]
+    [DbContext(typeof(DataBaseContext))]
     [Migration("20210216174901_InitialerStart")]
     partial class InitialerStart
     {

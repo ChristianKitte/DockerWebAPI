@@ -11,11 +11,11 @@ namespace DBServer.Controllers
 {
     [ApiController]
     [Route("[controller]/api/v1")]
-    public class DataBaseController : ControllerBase
+    public class PersonsController : ControllerBase
     {
-        private PersonenContext _context;
+        private DataBaseContext _context;
 
-        public DataBaseController(PersonenContext context)
+        public PersonsController(DataBaseContext context)
         {
             _context = context;
         }
