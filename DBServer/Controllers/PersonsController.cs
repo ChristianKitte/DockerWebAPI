@@ -69,6 +69,7 @@ namespace DBServer.Controllers
                 _context.Persons.Add(person);
                 _context.SaveChanges();
 
+                //var persons = _context.Persons.FirstOrDefault(x => x.PersonID == person.PersonID);
                 return Ok(person);
             }
             catch (Exception f)
