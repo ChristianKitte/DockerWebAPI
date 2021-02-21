@@ -22,7 +22,7 @@
     <None Update="..\.dockerignore">
       <DependentUpon>dockerfile</DependentUpon>
     </None>
-    <None Update="personen.db">
+    <None Update="Models\personen.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 namespace DBServer.Controllers
 {
     [ApiController]
-    [Route("[controller]/api/v1")]
+    [Route("api/v1/[controller]/")]
     public class PersonsController : ControllerBase
     {
         private DataBaseContext _context;
@@ -38,6 +38,7 @@ namespace DBServer.Controllers
             }
         }
 
+        //gibt ein Objekt zurück
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -54,8 +55,9 @@ namespace DBServer.Controllers
                 return Forbid();
             }
         }
-
-        [HttpPut("{vorname}/{nachname}")]
+          
+        //fügt ein Objekt hinzu
+        [HttpPost("{vorname}/{nachname}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public IActionResult AddPerson(string vorname, string nachname)
@@ -69,7 +71,6 @@ namespace DBServer.Controllers
                 _context.Persons.Add(person);
                 _context.SaveChanges();
 
-                //var persons = _context.Persons.FirstOrDefault(x => x.PersonID == person.PersonID);
                 return Ok(person);
             }
             catch (Exception f)
@@ -77,9 +78,9 @@ namespace DBServer.Controllers
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
-        }
-
-        [HttpPost("{id}/{vorname}/{nachname}")]
+        }      
+        //ändert ein Objekt
+        [HttpPut("{id}/{vorname}/{nachname}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public IActionResult UpdatePerson(int id, string vorname, string nachname)
@@ -92,7 +93,7 @@ namespace DBServer.Controllers
 
                 _context.SaveChanges();
 
-                return Ok(person);
+                return NoContent();
             }
             catch (Exception f)
             {
@@ -101,6 +102,7 @@ namespace DBServer.Controllers
             }
         }
 
+        //löscht ein Objekt
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
