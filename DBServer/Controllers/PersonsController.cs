@@ -55,7 +55,7 @@ namespace DBServer.Controllers
                 return Forbid();
             }
         }
-          
+
         //fügt ein Objekt hinzu
         [HttpPost("{vorname}/{nachname}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -78,7 +78,8 @@ namespace DBServer.Controllers
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
-        }      
+        }
+
         //ändert ein Objekt
         [HttpPut("{id}/{vorname}/{nachname}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -112,6 +113,31 @@ namespace DBServer.Controllers
             {
                 var person = _context.Persons.Where(x => x.PersonID == id).FirstOrDefault();
                 _context.Persons.Remove(person);
+                _context.SaveChanges();
+
+                return NoContent();
+            }
+            catch (Exception f)
+            {
+                HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+                return Forbid();
+            }
+        }
+
+        //löscht alle Objekte
+        [HttpDelete()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        public IActionResult DeletePerson()
+        {
+            try
+            {
+                var persons = _context.Persons.Select(x => x);
+                foreach (var person in persons)
+                {
+                    _context.Persons.Remove(person);
+                }
+
                 _context.SaveChanges();
 
                 return NoContent();

@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <Authors>Christian Kitte</Authors>
+    <Copyright>Christian Kitte</Copyright>
+    <Description>Beispielhafte Umsetzung zur Nutzung einer Web API mit Hilfe des httpClient Objektes in C# und .NET Core 5</Description>
   </PropertyGroup>
 
   <ItemGroup>
