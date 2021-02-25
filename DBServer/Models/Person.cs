@@ -39,4 +39,4 @@ namespace DBServer
                 new String[] {this.PersonID.ToString(), this.Vorname, this.Nachname});
         }
     }
-}}
+}

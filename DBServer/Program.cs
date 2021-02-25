@@ -9,18 +9,27 @@ using System.Threading.Tasks;
 
 namespace DBServer
 {
+    /// <summary>
+    /// Programmstart
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Einstiegsmethode Main 
+        /// </summary>
+        /// <param name="args">Parameterliste</param>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
         }
 
+        /// <summary>
+        /// Erstellung eines HostBuilder Objektes
+        /// </summary>
+        /// <param name="args">Parameterliste</param>
+        /// <returns></returns>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
