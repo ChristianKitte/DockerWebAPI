@@ -30,7 +30,7 @@ docker run -d -p 8080:80 ckitte/dbserver
 ```
 
 ## DBClient
-Der DBClient ist in erster Linie als eine Übung zum Zugriff auf eine WebAPI mit Hilfe des neuen HttpClient Objektes sowie für das Testen des DBServers erstellt worden. Er sollte in dieser Art nicht produktiv zum Einsatz kommen. Sofern der DBServer läuft und auf dem Port 8080 horcht, führt die Ausführung des DBClient zu der hier gezeigten Ausgabe, welche einen Test des DBServers und seiner Funktionen entspricht.
+Der DBClient ist in erster Linie als eine Übung zum Zugriff auf eine WebAPI mit Hilfe des neuen HttpClient Objektes sowie für das Testen des DBServers erstellt worden. Er sollte in dieser Art nicht produktiv zum Einsatz kommen. Sofern der DBServer läuft und auf dem Port 8080 horcht, führt die Ausführung des DBClient zu der hier gezeigten Ausgabe, welche einen Test des DBServers und seiner Funktionen entspricht. Alle verwendeten Routen können leicht aus dem Code in **Program.cs** nachvollzogen werden.
 
 ```
 Keine Personen vorhanden...
