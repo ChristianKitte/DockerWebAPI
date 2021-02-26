@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 namespace DBServer
 {
     /// <summary>
-    /// Der eigentliche Startpunkt der Anwendung. Konfiguration der Service und Middleware
+    /// Der eigentliche Startpunkt der Anwendung. Konfiguration der Service und Middleware ...
     /// </summary>
     public class Startup
     {
