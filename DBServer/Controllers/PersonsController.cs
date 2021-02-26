@@ -9,17 +9,31 @@ using Microsoft.AspNetCore.Http;
 
 namespace DBServer.Controllers
 {
+    /// <summary>
+    /// Der Controller für die Entität Person (Tabelle Person in der Datenbank)
+    /// </summary>
     [ApiController]
     [Route("api/v1/[controller]/")]
     public class PersonsController : ControllerBase
     {
+        /// <summary>
+        /// Hält den für den Controller gültige DBContext
+        /// </summary>
         private DataBaseContext _context;
 
+        /// <summary>
+        /// Der für den Controller gültige DBContext
+        /// </summary>
+        /// <param name="context">Ein gültiger Controller</param>
         public PersonsController(DataBaseContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Liefert alle verfügbare Personen 
+        /// </summary>
+        /// <returns>OK und eine Liste von Instanzen der hinzugefügten Entität</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -31,14 +45,18 @@ namespace DBServer.Controllers
                 HttpContext.Response.StatusCode = StatusCodes.Status200OK;
                 return Ok(person.ToList());
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
         }
 
-        //gibt ein Objekt zurück
+        /// <summary>
+        /// Liefert die durch die übergebene ID definierte Person
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>OK und eine Instanz der Entität mit der übergebenen ID oder Forbid</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -49,14 +67,19 @@ namespace DBServer.Controllers
                 var persons = _context.Persons.FirstOrDefault(x => x.PersonID == id);
                 return Ok(persons);
             }
-            catch (Exception f)
+            catch (Exception)
             {
-                HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+                //HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
         }
 
-        //fügt ein Objekt hinzu
+        /// <summary>
+        /// Fügt eine neue Person mit den übergebenen Daten hinzu
+        /// </summary>
+        /// <param name="vorname">Der Vorname</param>
+        /// <param name="nachname">Der Nachname</param>
+        /// <returns>OK und eine Instanz der hinzugefügten Entität oder Forbid</returns>
         [HttpPost("{vorname}/{nachname}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -73,14 +96,20 @@ namespace DBServer.Controllers
 
                 return Ok(person);
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
         }
 
-        //ändert ein Objekt
+        /// <summary>
+        /// Aktualisiert die durch die ID bestimmte Person. Die ID ist nicht änderbar.
+        /// </summary>
+        /// <param name="id">Die ID der Person</param>
+        /// <param name="vorname">Der Vorname</param>
+        /// <param name="nachname">Der Nachname</param>
+        /// <returns>NoContent</returns>
         [HttpPut("{id}/{vorname}/{nachname}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -96,14 +125,18 @@ namespace DBServer.Controllers
 
                 return NoContent();
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
         }
 
-        //löscht ein Objekt
+        /// <summary>
+        /// Löscht die durch die ID bestimmte Person aus der Datenbank
+        /// </summary>
+        /// <param name="id">Die ID der Person</param>
+        /// <returns>NoContent</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -117,13 +150,17 @@ namespace DBServer.Controllers
 
                 return NoContent();
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
             }
         }
 
+        /// <summary>
+        /// Löschte alle Personen aus der Datenbank
+        /// </summary>
+        /// <returns>NoContent</returns>
         //löscht alle Objekte
         [HttpDelete()]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -142,7 +179,7 @@ namespace DBServer.Controllers
 
                 return NoContent();
             }
-            catch (Exception f)
+            catch (Exception)
             {
                 HttpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                 return Forbid();
