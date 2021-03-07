@@ -12,8 +12,8 @@ namespace DBServer
     public class Startup
     {
         /// <summary>
-        /// Diese Methode wird von der Runtime aufgerufen. Hier werden Services zum Container hinzugefügt.
-        /// Die Unterstützung für Controller oder einen DB Context wird hier konfiguriert.
+        /// Diese Methode wird von der Runtime aufgerufen. Hier werden Services zum Container hinzugefÃ¼gt.
+        /// Die UnterstÃ¼tzung fÃ¼r Controller oder einen DB Context wird hier konfiguriert.
         /// </summary>
         /// <param name="services">Eine Instanz von ServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
@@ -39,7 +39,7 @@ namespace DBServer
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DBServer v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
